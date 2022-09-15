@@ -4,4 +4,7 @@ Magic app that tells you your age if you give it your name.
 
 ## The Beginnings
 - Played around with API
-- Got creative with design before I decided to stop fooling around and come up with something simple that works
+- Refreshed myself on EnvironmentObjects, Observable Objects, to implement MVVM architecture
+- Understood how Codable types work, and how we can use them to convert JSON objects to Swift types
+- Implemented basic frontend UI ('22-23 App Team Themed)
+
