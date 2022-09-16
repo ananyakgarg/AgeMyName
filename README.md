@@ -16,8 +16,10 @@ Magic app that tells you your age if you give it your name.
 
 # Demo
 
-![Simulator Screen Recording - iPhone 13 - 2022-09-16 at 01 51 26](https://user-images.githubusercontent.com/89492329/190566141-eb638475-0672-46b9-abc7-9d7ad826c15b.gif)
 
+
+
+
+![Simulator Screen Recording - iPhone 13 - 2022-09-16 at 16 01 42](https://user-images.githubusercontent.com/89492329/190723478-f57cb65d-c1b7-4496-8b57-af5f02017f67.gif)
 
 Thank you!
-
