@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct AgeMyNameApp: App {
+    @StateObject var viewModel = ViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(viewModel)
         }
     }
 }
