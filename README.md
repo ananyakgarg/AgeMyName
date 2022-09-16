@@ -6,7 +6,7 @@ Magic app that tells you your age if you give it your name.
 - Played around with API- (https://agify.io/)
 - Refreshed myself on @EnvironmentObjects, @ObservableObjects, @State
 - Understood how Codable types work, and how we can use them to convert JSON objects to Swift types
-- Implemented basic frontend UI ('22-23 App Team Themed)
+- Implemented basic frontend UI
 
 
 ## The Fun Part
