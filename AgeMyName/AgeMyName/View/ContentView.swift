@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var viewModel: ViewModel
     
     @State private var name: String = ""
     
@@ -23,11 +22,7 @@ struct ContentView: View {
             }
             
         }
-        
-       
-  
-        
-        
+
     }
 }
 
