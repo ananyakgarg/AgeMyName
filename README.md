@@ -10,7 +10,7 @@ Magic app that tells you your age if you give it your name.
 
 
 ## The Fun Part
-- My end goal was to have it dynamically update as characters are typed. (Goal acheived 🎉)
+- My end goal was to have it dynamically update as characters are typed.
 - Making sure the user isn't inputting spaces because that is not how the API works
 - Played around with colors, went with what I thought looked appealing
 
