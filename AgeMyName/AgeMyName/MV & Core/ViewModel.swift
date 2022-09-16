@@ -12,7 +12,6 @@ import Foundation
     
     
     
-    @Published var inputName: String = ""
     @Published var outPut: Int = 0
     @Published var nameCount: Int = 0
     @Published var spacedEntered: Bool = false
