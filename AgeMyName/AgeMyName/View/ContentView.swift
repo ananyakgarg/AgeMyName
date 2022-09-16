@@ -10,8 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var viewModel: ViewModel
     
-    @State var name: String = ""
-    
+    @State private var name: String = ""
     
     var body: some View {
         ZStack{
@@ -19,9 +18,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
                 
             VStack{
-                EnterName(name: $name)
-                    .padding()
-                GetAge(inputName: name)
+                EnterName(name: name)
                     .padding()
                 DisplayAge()
                     .padding()
@@ -38,12 +35,23 @@ struct ContentView: View {
 }
 struct EnterName: View{
     @EnvironmentObject var viewModel: ViewModel
-    @Binding var name: String
+    @State var name: String
+
+    
     var body: some View{
         
         Group{
-            
             TextField("Enter Name", text: $name)
+                .onChange(of: name) { newName in
+                    Task{
+                        await viewModel.getMyAge(inputName: name)
+                        
+                    }
+                    
+                }
+                .alert("No Spaces :)", isPresented: $viewModel.spacedEntered){
+                            Button("Got it.", role:.cancel){}
+                        }
                 .foregroundColor(.white)
                 .font(.system(size: 40))
                 .frame(width: 250, height: 100, alignment: .center)
@@ -57,39 +65,17 @@ struct EnterName: View{
     }
 }
 
-struct GetAge: View{
-    @EnvironmentObject var viewModel: ViewModel
-    let inputName: String
-    var body: some View{
-        Button("Get Age"){
-            Task{
-                await viewModel.getMyAge(inputName: inputName)
-            }
-        }
-        .alert("No Spaces :)", isPresented: $viewModel.spacedEntered){
-            Button("Got it.", role:.cancel){}
-        }
-        .foregroundColor(.white)
-        .frame(width: 200, height: 50, alignment: .center)
-        .font(.system(size: 30))
-        .padding()
-        .background(
-            LinearGradient(colors: [.pink, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing
-                          )
-            
-            )
-        .cornerRadius(15)
-    }
-}
+
 
 
 
 struct DisplayAge: View{
     @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View{
-        Text(String(viewModel.outPut))
+        Text("You are " + String(viewModel.outPut) + " years old.")
             .foregroundColor(.white)
-            .font(.system(size: 40))
+            .font(.system(size: 30))
             .padding()
             .background(
                 LinearGradient(colors: [.pink, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing
@@ -98,8 +84,22 @@ struct DisplayAge: View{
                 )
             .background(Color.cyan)
             .cornerRadius(15)
+        Text("You share a name with " + String(viewModel.nameCount) + " people!")
+            .foregroundColor(.white)
+            .font(.system(size: 30))
+            .padding()
+            .background(
+                LinearGradient(colors: [.pink, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing
+                              )
+                
+                )
+            .background(Color.cyan)
+            .cornerRadius(15)
+        
     }
     }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

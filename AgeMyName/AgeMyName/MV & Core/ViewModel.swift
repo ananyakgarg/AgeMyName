@@ -14,6 +14,7 @@ import Foundation
     
     @Published var inputName: String = ""
     @Published var outPut: Int = 0
+    @Published var nameCount: Int = 0
     @Published var spacedEntered: Bool = false
     
     func getMyAge(inputName: String) async{
@@ -29,6 +30,7 @@ import Foundation
             if let decodedResponse = try?
                 JSONDecoder().decode(Result.self, from: data){
                 outPut = decodedResponse.age
+                nameCount = decodedResponse.count
             }
         } catch{
             print("Invalid data")
