@@ -20,9 +20,6 @@ struct ContentView: View {
             VStack{
                 EnterName(name: name)
                     .padding()
-                DisplayAge()
-                    .padding()
-                
             }
             
         }
@@ -33,10 +30,10 @@ struct ContentView: View {
         
     }
 }
+
 struct EnterName: View{
     @EnvironmentObject var viewModel: ViewModel
     @State var name: String
-
     
     var body: some View{
         
@@ -45,9 +42,7 @@ struct EnterName: View{
                 .onChange(of: name) { newName in
                     Task{
                         await viewModel.getMyAge(inputName: name)
-                        
                     }
-                    
                 }
                 .alert("No Spaces :)", isPresented: $viewModel.spacedEntered){
                             Button("Got it.", role:.cancel){}
@@ -61,6 +56,12 @@ struct EnterName: View{
                     )
                 .cornerRadius(15)
             
+            if !name.isEmpty{
+                DisplayAge()
+                    
+            }
+           
+            
         }
     }
 }
@@ -71,30 +72,35 @@ struct EnterName: View{
 
 struct DisplayAge: View{
     @EnvironmentObject var viewModel: ViewModel
-    
     var body: some View{
-        Text("You are " + String(viewModel.outPut) + " years old.")
-            .foregroundColor(.white)
-            .font(.system(size: 30))
-            .padding()
-            .background(
-                LinearGradient(colors: [.pink, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing
-                              )
-                
-                )
-            .background(Color.cyan)
-            .cornerRadius(15)
-        Text("You share a name with " + String(viewModel.nameCount) + " people!")
-            .foregroundColor(.white)
-            .font(.system(size: 30))
-            .padding()
-            .background(
-                LinearGradient(colors: [.pink, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing
-                              )
-                
-                )
-            .background(Color.cyan)
-            .cornerRadius(15)
+        VStack{
+            Text("You are " + String(viewModel.outPut) + " years old.")
+                .foregroundColor(.white)
+                .font(.system(size: 30))
+                .padding()
+                .background(
+                    LinearGradient(colors: [.pink, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing
+                                  )
+                    )
+                .cornerRadius(15)
+
+        }
+        
+        VStack{
+            
+            Text("You share a name with " + String(viewModel.nameCount) + " people!")
+                .foregroundColor(.white)
+                .font(.system(size: 30))
+                .padding()
+                .background(
+                    LinearGradient(colors: [.pink, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing
+                                  )
+                    
+                    )
+                .cornerRadius(15)
+            
+        }
+        
         
     }
     }
